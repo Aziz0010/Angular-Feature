@@ -1,0 +1,52 @@
+<section class="details-page" *ngIf="suggestion">
+
+  <div class="details-head">
+    <span class="eyebrow">🔍 Détails</span>
+    <h2>Suggestion details</h2>
+  </div>
+
+  <article class="details-card">
+    <div class="card-banner"></div>
+
+    <div class="card-body">
+      <div class="card-row">
+        <span class="row-label">Title</span>
+        <h3 class="row-value title">{{ suggestion.title }}</h3>
+      </div>
+
+      <div class="card-row">
+        <span class="row-label">Description</span>
+        <p class="row-value">{{ suggestion.description }}</p>
+      </div>
+
+      <div class="details-grid">
+        <div class="info-tile">
+          <span class="row-label">Category</span>
+          <span class="category-pill">{{ suggestion.category }}</span>
+        </div>
+
+        <div class="info-tile">
+          <span class="row-label">Status</span>
+          <span class="status" [ngClass]="suggestion.status?.toLowerCase() || 'pending'">
+            {{ suggestion.status || 'EN ATTENTE' }}
+          </span>
+        </div>
+
+        <div class="info-tile" *ngIf="suggestion.date">
+          <span class="row-label">Created date</span>
+          <span class="row-value small">📅 {{ suggestion.date | date:'medium' }}</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <div class="action-buttons">
+    <button (click)="goToUpdate()" class="btn-update">✏️ Update</button>
+    <button (click)="backToList()" class="btn-back">← Back to list</button>
+  </div>
+</section>
+
+<div *ngIf="!suggestion" class="loading">
+  <div class="spinner"></div>
+  <p>Loading suggestion details...</p>
+</div>
