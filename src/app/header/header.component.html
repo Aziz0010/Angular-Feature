@@ -1,0 +1,21 @@
+<nav class="navbar">
+  <a routerLink="/home" class="brand">
+    <span class="logo-dot"></span>
+    <span class="brand-name">Suggest<span class="brand-accent">Hub</span></span>
+  </a>
+
+  <div class="nav-links">
+    <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <span class="link-icon">🏠</span> Home
+    </a>
+    <a routerLink="/suggestions" routerLinkActive="active">
+      <span class="link-icon">💡</span> Suggestions
+    </a>
+    <a routerLink="/suggestionForm" routerLinkActive="active">
+      <span class="link-icon">＋</span> New
+    </a>
+    <a routerLink="/userForm" routerLinkActive="active" class="cta">
+      <span class="link-icon">👤</span> Sign up
+    </a>
+  </div>
+</nav>
