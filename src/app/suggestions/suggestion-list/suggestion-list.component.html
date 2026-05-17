@@ -1,0 +1,97 @@
+<section class="page">
+
+  <header class="page-head">
+    <div>
+      <span class="eyebrow">💡 Suggestions</span>
+      <h2>All suggestions</h2>
+      <p class="subtitle">Browse, like and manage every idea shared by the community.</p>
+    </div>
+    <button class="btn-add" routerLink="/suggestionForm">
+      <span>＋</span> Ajouter une suggestion
+    </button>
+  </header>
+
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text"
+           [(ngModel)]="searchText"
+           placeholder="Rechercher par titre ou catégorie..."
+           class="search" />
+  </div>
+
+  <!-- LIST -->
+  <div class="grid">
+    <article *ngFor="let suggestion of filteredSuggestions()" class="card">
+
+      <div class="card-top">
+        <span class="category-pill">{{ suggestion.category }}</span>
+        <span class="status-pill" [ngClass]="suggestion.status === 'ACCEPTEE' ? 'accepted' : 'refused'">
+          {{ suggestion.status }}
+        </span>
+      </div>
+
+      <h3 class="card-title">{{ suggestion.title }}</h3>
+      <p class="card-desc">{{ suggestion.description }}</p>
+
+      <div class="card-meta">
+        <span class="date">📅 {{ suggestion.date | date:'dd MMM yyyy' }}</span>
+        <span class="likes">👍 {{ suggestion.nbLikes || 0 }}</span>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="actions">
+        <button class="action like-btn" (click)="likeSuggestion(suggestion)" title="Like">
+          👍 <span>Like</span>
+        </button>
+
+        <button class="action fav-btn" (click)="addToFavorites(suggestion)" title="Ajouter aux favoris">
+          ❤️ <span>Favoris</span>
+        </button>
+
+        <button class="action eye-btn" [routerLink]="['/suggestions/details', suggestion.id]" title="Voir les détails">
+          👁️
+        </button>
+
+        <button class="action edit-btn" (click)="editSuggestion(suggestion.id)" title="Modifier">
+          ✏️
+        </button>
+
+        <button class="action delete-btn" (click)="deleteSuggestion(suggestion.id)" title="Supprimer">
+          🗑️
+        </button>
+      </div>
+
+    </article>
+
+    <div class="empty" *ngIf="filteredSuggestions().length === 0">
+      <div class="empty-icon">🔭</div>
+      <h4>Aucune suggestion trouvée</h4>
+      <p>Essayez un autre mot-clé ou ajoutez une nouvelle suggestion.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAVORIS -->
+<section class="favorites-section" *ngIf="favorites.length > 0">
+  <header class="page-head simple">
+    <div>
+      <span class="eyebrow gold">⭐ Mes Favoris</span>
+      <h2>Vos coups de cœur</h2>
+    </div>
+  </header>
+
+  <div class="grid">
+    <article class="card fav-card" *ngFor="let fav of favorites">
+      <div class="card-top">
+        <span class="category-pill">{{ fav.category }}</span>
+        <span class="star">⭐</span>
+      </div>
+      <h3 class="card-title">{{ fav.title }}</h3>
+      <p class="card-desc">{{ fav.description }}</p>
+      <div class="card-meta">
+        <span class="date">📅 {{ fav.date | date:'dd MMM yyyy' }}</span>
+      </div>
+    </article>
+  </div>
+</section>
