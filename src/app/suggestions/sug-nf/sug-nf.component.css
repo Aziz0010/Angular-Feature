@@ -1,0 +1,90 @@
+:host {
+  display: block;
+}
+
+.nf-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 20px;
+}
+
+.nf-card {
+  position: relative;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 50px 40px;
+  max-width: 480px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.nf-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--accent-2) 100%);
+}
+
+.nf-emoji {
+  font-size: 3rem;
+  margin-bottom: 6px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.nf-code {
+  font-size: 5rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+
+.zero {
+  display: inline-block;
+  animation: spin-soft 4s linear infinite;
+}
+
+@keyframes spin-soft {
+  to { transform: rotate(360deg); }
+}
+
+.nf-card h2 {
+  margin: 10px 0 8px;
+  font-size: 1.4rem;
+}
+
+.nf-card p {
+  color: var(--text-muted);
+  margin: 0 0 22px;
+}
+
+.nf-btn {
+  display: inline-block;
+  padding: 12px 22px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 10px 22px rgba(99, 102, 241, 0.32);
+  transition: all 0.2s ease;
+}
+
+.nf-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
